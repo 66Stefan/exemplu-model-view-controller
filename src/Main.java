@@ -1,5 +1,14 @@
+import ro.mycode.models.Masina;
+import ro.mycode.controllers.MasinaControll;
+import ro.mycode.view.View;
+
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        View  view= new View();
+
+        view.play();
     }
 }
