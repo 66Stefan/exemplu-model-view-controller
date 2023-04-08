@@ -26,7 +26,11 @@ public class View {
         System.out.println("Apasati tasta 2 pentru a afisa masinile dupa  culoarea rosie");
         System.out.println("Apasati tasta 4 pentru a afisa masinile dupa Am");
         System.out.println("Apasa tasta 3 sa iesi!");
-        System.out.println("Apasati tasta 5 pentru a adauga  o masina");
+        System.out.println("Apasa tasta 5 pentru a adauga  o masina");
+        //todo:szterg
+        System.out.println("Apasa tasta 6 pentru a sterge o masina");
+        System.out.println("Apasa tasta 7 pentru a edita o masina");
+
 
     }
 
@@ -46,6 +50,10 @@ public class View {
                 case 4: showCarsByYear();
                 break;
                 case 5: addNewcar();
+                    break;
+                case 6: deletedCarByYear();
+                    break;
+                case 7: updateMasina();
                     break;
                 default:
                     System.out.println("nu a-ti introdus o valoare corecta");
@@ -91,6 +99,8 @@ public class View {
 
     public  void addNewcar(){
 
+
+        //todo:add conditions
         System.out.println("Introduce-ti un an");
         int anFabricatie=Integer.parseInt(scanner.nextLine());
 
@@ -119,6 +129,78 @@ public class View {
 
 
     }
+
+    public void deletedCarByYear(){
+        //ArrayList<Masina> deleted = new ArrayList<>();
+        System.out.println("Introduce-ti marca masinii pe care vreti sa o stergeti");
+        String marca = scanner.nextLine();
+        System.out.println("Introduce-ti modelul masinii pe care vreti sa  o stergeti");
+        String model = scanner.nextLine();
+
+
+        Masina carByMarcaAndModel = masinaControll.findCarByMarcaAndModel(marca, model);
+
+
+        if(carByMarcaAndModel==null){
+
+            System.out.println("Masina introdusa nu exista");
+        }else{
+
+
+            this.masinaControll.eraseCar(carByMarcaAndModel);
+
+
+            System.out.println("Masina a fost stearsa cu  success!!");
+
+
+
+        }
+    }
+
+    public void updateMasina(){
+        System.out.println("Introduce-ti marca masinii pe care vreti sa o modificati");
+        String marca = scanner.nextLine();
+        System.out.println("Introduce-ti modelul masinii pe care vreti sa  o modificati");
+        String model = scanner.nextLine();
+
+        Masina carByMarcaAndModel = masinaControll.findCarByMarcaAndModel(marca, model);
+        if(carByMarcaAndModel!=null){
+            System.out.println("Introduce-ti ce vreti sa modificati:an,culoare,rezervata");
+            String modific = scanner.nextLine();
+            String[]deModificat=modific.split(",");
+
+
+            for(int i=0;i<deModificat.length;i++){
+
+
+                switch (deModificat[i]){
+                    case "an":
+                        System.out.println("Introduceti noul an");
+                        int an = Integer.parseInt(scanner.nextLine());
+                        this.masinaControll.editareAnul(marca, model, an);
+                        break;
+                    case "culoare":
+                        System.out.println("introduce-ti culoarea:");
+                        String culoare = scanner.nextLine();
+                        this.masinaControll.editareCuloare(marca, model, culoare);
+                        break;
+                    case "rezervare":
+                        System.out.println("Introduce-ti rezervarea");
+                        Boolean rezervare = Boolean.parseBoolean(scanner.nextLine());
+                        this.masinaControll.editareRezervare(marca,model,rezervare);
+                        break;
+                    default:
+                        System.out.println("nu ati introdus  o obtiune corecta");
+
+                }
+            }
+
+
+
+
+        }
+    }
+
 
 
 }

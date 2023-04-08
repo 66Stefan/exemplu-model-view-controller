@@ -3,7 +3,7 @@ import  ro.mycode.models.Masina;
 import java.util.ArrayList;
 public class MasinaControll {
 
-    private   ArrayList<Masina> masini;
+    private ArrayList<Masina> masini;
 
 
     public MasinaControll() {
@@ -14,8 +14,7 @@ public class MasinaControll {
     }
 
 
-
-    public void load(){
+    public void load() {
 
         Masina masina = new Masina("Audi", "A8", 1985, "Rosu", false);
         Masina masina1 = new Masina("BMW", "M6", 2023, "Negru", true);
@@ -32,25 +31,25 @@ public class MasinaControll {
 
     //todo: afisare
 
-    public void afisareMasina(){
+    public void afisareMasina() {
 
-        for(int i=0;i<masini.size();i++){
+        for (int i = 0; i < masini.size(); i++) {
             System.out.println(masini.get(i).afisareMasina());
         }
     }
 
     //todo:functie ce returneaza masina cea mai noua:)pahare
 
-    public Masina masinaCeaMaiNoua(){
+    public Masina masinaCeaMaiNoua() {
 
         //presupunem ca prima masina este cea mai noua
 
-        Masina noua=masini.get(0);
-        for(int i=0;i<masini.size();i++){
+        Masina noua = masini.get(0);
+        for (int i = 0; i < masini.size(); i++) {
 
-            if(masini.get(i).getAnFabricatie()>noua.getAnFabricatie()){
+            if (masini.get(i).getAnFabricatie() > noua.getAnFabricatie()) {
 
-                noua=masini.get(i);
+                noua = masini.get(i);
             }
         }
 
@@ -59,11 +58,11 @@ public class MasinaControll {
 
     public ArrayList<Masina> findAllCarsByColor(String color) {
 
-        ArrayList<Masina> filter=new ArrayList<>();
+        ArrayList<Masina> filter = new ArrayList<>();
 
         for (int i = 0; i < masini.size(); i++) {
             if (masini.get(i).getCuloare().equals(color)) {
-                 filter.add(masini.get(i));
+                filter.add(masini.get(i));
 
             }
 
@@ -74,10 +73,10 @@ public class MasinaControll {
 
     //todo: metoda ce returneaza masinile dupa un anumit an
 
-    public ArrayList<Masina> findAllCarsAftherYer( int year){
-        ArrayList<Masina> filter= new ArrayList<>();
-        for(int i=0; i<masini.size();i++){
-            if((masini.get(i).getAnFabricatie())==year){
+    public ArrayList<Masina> findAllCarsAftherYer(int year) {
+        ArrayList<Masina> filter = new ArrayList<>();
+        for (int i = 0; i < masini.size(); i++) {
+            if ((masini.get(i).getAnFabricatie()) == year) {
                 filter.add(masini.get(i));
             }
         }
@@ -87,10 +86,70 @@ public class MasinaControll {
     //todo: adauga o masina
 
 
-    public void addCar(Masina masina){
+    public void addCar(Masina masina) {
 
 
         this.masini.add(masina);
 
     }
+
+    //todo:functie ce primeste ca parametru marca si modelul unei masini  si returneaza o masina daca nu gaseste masina sa returneze null
+
+    public Masina findCarByMarcaAndModel(String marca, String model) {
+
+        for (int i = 0; i < masini.size(); i++) {
+
+            if (masini.get(i).getModel().equals(model) && masini.get(i).getMarca().equals(marca)) {
+
+                return masini.get(i);
+            }
+        }
+        return null;
+    }
+
+
+    public void eraseCar(Masina masina) {
+
+
+        this.masini.remove(masina);
+    }
+
+
+
+    //todo:functie ce editeaza anul unei masini
+    public Boolean editareAnul(String marca,String model, int anul) {
+        Masina carByMarcaAndModel = this.findCarByMarcaAndModel(marca, model);
+        if(carByMarcaAndModel!=null){
+            carByMarcaAndModel.setAnFabricatie(anul);
+            return true;
+        }
+        return false;
+    }
+    //todo:functie ce editeaza culoarea
+
+    public Boolean editareCuloare(String  marca, String model, String culoare){
+        Masina carByMarcaAndModel = this.findCarByMarcaAndModel(marca, model);
+        if(carByMarcaAndModel!=null){
+            carByMarcaAndModel.setCuloare(culoare);
+            return  true;
+        }
+        return  false;
+    }
+
+    //todo:functie ce editeaza starea (rezervata)
+    public Boolean editareRezervare(String  marca, String model, Boolean rezervare){
+        Masina carByMarcaAndModel = this.findCarByMarcaAndModel(marca, model);
+        if(carByMarcaAndModel!=null){
+            carByMarcaAndModel.setRezervare(rezervare);
+            return  true;
+        }
+        return  false;
+    }
+
+
+
+
+
+
+
 }

@@ -7,8 +7,16 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        View  view= new View();
+       View  view= new View();
 
-        view.play();
+       view.play();
+
+
+//        MasinaControll test = new MasinaControll();
+//
+//        test.editareRezervare("Audi", "A8", true);
+//
+//
+//        test.afisareMasina();
     }
 }

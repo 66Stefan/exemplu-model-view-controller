@@ -108,17 +108,17 @@ public class Masina {
 
     }
 
-    public Boolean setRezervare() {
+    public Boolean getRezervare() {
         return this.rezervata;
     }
 
-    public void getRezervare(Boolean rezervare) {
-        if (rezervare == true) {
-            System.out.println("Nu se poate rezerva!");
-
-        }else {
+    public void setRezervare(Boolean rezervare) {
+//        if (rezervare == true) {
+//            System.out.println("Nu se poate rezerva!");
+//
+//        }else {
             this.rezervata = rezervare;
-        }
+//        }
     }
 
 
